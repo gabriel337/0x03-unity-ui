@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     {
          
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -22,7 +21,6 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Game Over!");
             SceneManager.LoadScene("Maze");
-
         }
     }
 
@@ -64,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Goal"))
         {
             Debug.Log($"You win!");
+            SceneManager.LoadScene("Maze");
         }
     }
 }
