@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,7 +8,6 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private int score = 0;
     public int health = 5;
-    
     public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (health == 0)
+        {
+            Debug.Log("Game Over!");
+            SceneManager.LoadScene("Maze");
+
+        }
     }
 
       void FixedUpdate()
