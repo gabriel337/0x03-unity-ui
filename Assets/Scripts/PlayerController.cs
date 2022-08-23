@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,10 +10,14 @@ public class PlayerController : MonoBehaviour
     private int score = 0;
     public int health = 5;
     public Rigidbody rb;
+    public Text scoreText;
+    public Text healthText;
+    public GameObject youWin;
+    
     // Start is called before the first frame update
     void Start()
     {
-         
+
     }
     // Update is called once per frame
     void Update()
@@ -43,26 +48,58 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(speed , 0, 0);
         }
     }
-
+    /// <summary>
+    /// When gameobject with specific tag is trigger an option is activated
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Pickup"))
         {
             Destroy(other.gameObject);
             score++;
-            Debug.Log($"Score: {score}");
+            SetScoreText();
+            //Debug.Log($"Score: {score}");
         }
 
         if (other.gameObject.CompareTag("Trap"))
         {
             health--;
-            Debug.Log($"Health: {health}");
+            SetHealthText();
+            //Debug.Log($"Health: {health}");
         }
 
         if (other.gameObject.CompareTag("Goal"))
         {
-            Debug.Log($"You win!");
-            SceneManager.LoadScene("Maze");
+            YouWinText(); 
+           //Debug.Log($"You win!");
+            //SceneManager.LoadScene("Maze");
         }
+    }
+    /// <summary>
+    /// Updates the Score string in game
+    /// </summary>
+    void SetScoreText()
+    {
+        scoreText.text = "Score: " + score; 
+    }
+    /// <summary>
+    /// Updates the Health of the player string in game
+    /// </summary>
+    void SetHealthText()
+    {
+        healthText.text = "Health: " + health;
+    }
+    void YouWinText()
+    {
+        
+        
+            gameObject.GetComponent<Image>().color = Color.green;
+            
+            youWin.SetActive(true);
+        
+
+        
+
     }
 }
