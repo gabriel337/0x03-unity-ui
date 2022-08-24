@@ -2348,7 +2348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2368,7 +2368,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You Win!
+  m_Text: 
 --- !u!222 &544039197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6252,7 +6252,8 @@ MonoBehaviour:
   rb: {fileID: 1575234873}
   scoreText: {fileID: 1839075708}
   healthText: {fileID: 1144768424}
-  youWin: {fileID: 1889543125}
+  wlbar: {fileID: 1889543125}
+  WinLoseText: {fileID: 544039196}
 --- !u!1 &1575761398
 GameObject:
   m_ObjectHideFlags: 0
@@ -7912,7 +7913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11656284, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

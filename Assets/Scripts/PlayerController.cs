@@ -12,11 +12,14 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public Text scoreText;
     public Text healthText;
-    public GameObject youWin;
+    public GameObject wlbar;
+    public Text WinLoseText;
+   
     
     // Start is called before the first frame update
     void Start()
     {
+        
 
     }
     // Update is called once per frame
@@ -24,8 +27,18 @@ public class PlayerController : MonoBehaviour
     {
         if (health == 0)
         {
-            Debug.Log("Game Over!");
-            SceneManager.LoadScene("Maze");
+            wlbar.SetActive(true);
+            wlbar.GetComponent<Image>().color = Color.red;
+            WinLoseText.GetComponent<Text>().color = Color.white;
+            WinLoseText.text = "Game Over!";
+            //Debug.Log("Game Over!");
+            StartCoroutine(LoadScene(3));
+            //SceneManager.LoadScene("Maze");
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("menu");
+
         }
     }
 
@@ -57,23 +70,23 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Pickup"))
         {
             Destroy(other.gameObject);
-            score++;
             SetScoreText();
             //Debug.Log($"Score: {score}");
         }
 
         if (other.gameObject.CompareTag("Trap"))
         {
-            health--;
+    
             SetHealthText();
             //Debug.Log($"Health: {health}");
         }
 
         if (other.gameObject.CompareTag("Goal"))
         {
-            YouWinText(); 
+            winLoseBar();
+            StartCoroutine(LoadScene(3));
            //Debug.Log($"You win!");
-            //SceneManager.LoadScene("Maze");
+           //SceneManager.LoadScene("Maze");
         }
     }
     /// <summary>
@@ -81,6 +94,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void SetScoreText()
     {
+        score++;
         scoreText.text = "Score: " + score; 
     }
     /// <summary>
@@ -88,18 +102,22 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void SetHealthText()
     {
+        health--;
         healthText.text = "Health: " + health;
     }
-    void YouWinText()
+    /// <summary>
+    /// Activates win bar
+    /// </summary>
+    void winLoseBar()
     {
-        
-        
-            gameObject.GetComponent<Image>().color = Color.green;
-            
-            youWin.SetActive(true);
-        
-
-        
-
+        wlbar.SetActive(true);
+        wlbar.GetComponent<Image>().color = Color.green;
+        WinLoseText.GetComponent<Text>().color = Color.black;
+        WinLoseText.text = "You Win!";
+    }
+    IEnumerator LoadScene(float seconds)
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Maze");
     }
 }
