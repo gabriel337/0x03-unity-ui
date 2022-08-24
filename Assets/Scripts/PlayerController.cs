@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class for player functions in Maze Game
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public float speed;
@@ -15,14 +18,9 @@ public class PlayerController : MonoBehaviour
     public GameObject wlbar;
     public Text WinLoseText;
    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-
-    }
-    // Update is called once per frame
+    /// <summary>
+    /// method that will updata health per restart, and esc keydown for changin scene
+    /// </summary>
     void Update()
     {
         if (health == 0)
@@ -31,17 +29,16 @@ public class PlayerController : MonoBehaviour
             wlbar.GetComponent<Image>().color = Color.red;
             WinLoseText.GetComponent<Text>().color = Color.white;
             WinLoseText.text = "Game Over!";
-            //Debug.Log("Game Over!");
             StartCoroutine(LoadScene(3));
-            //SceneManager.LoadScene("Maze");
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("menu");
-
         }
     }
-
+    /// <summary>
+    /// Method for player movement with wsda and arrows
+    /// </summary>
       void FixedUpdate()
     {
         if (Input.GetKey("up") || Input.GetKey("w"))
@@ -71,22 +68,16 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             SetScoreText();
-            //Debug.Log($"Score: {score}");
         }
-
         if (other.gameObject.CompareTag("Trap"))
         {
     
             SetHealthText();
-            //Debug.Log($"Health: {health}");
         }
-
         if (other.gameObject.CompareTag("Goal"))
         {
             winLoseBar();
             StartCoroutine(LoadScene(3));
-           //Debug.Log($"You win!");
-           //SceneManager.LoadScene("Maze");
         }
     }
     /// <summary>
@@ -115,6 +106,11 @@ public class PlayerController : MonoBehaviour
         WinLoseText.GetComponent<Text>().color = Color.black;
         WinLoseText.text = "You Win!";
     }
+    /// <summary>
+    /// Ienumerator method for waiting a few seconds before changing scene
+    /// </summary>
+    /// <param name="seconds">seconds to be waited</param>
+    /// <returns></returns>
     IEnumerator LoadScene(float seconds)
     {
         yield return new WaitForSeconds(3);

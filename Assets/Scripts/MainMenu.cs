@@ -4,25 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// MainMenu class that has the components for the mainmenu canvas
+/// </summary>
 public class MainMenu : MonoBehaviour
-{
-    
+{    
     public Material trapMat;
     public Material goalMat;
     public Toggle colorblindMode;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-          
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// method for colorblind option and to change scene to Maze
+    /// </summary>
     public void PlayerMaze()
     {
         if (colorblindMode.isOn)
@@ -35,9 +28,11 @@ public class MainMenu : MonoBehaviour
             trapMat.color = Color.red;
             goalMat.color = Color.green;
         }
-        
         SceneManager.LoadScene("Maze");
     }
+    /// <summary>
+    /// method for quitting the application
+    /// </summary>
     public void QuitMaze()
     {
         Debug.Log("Quit Game");
